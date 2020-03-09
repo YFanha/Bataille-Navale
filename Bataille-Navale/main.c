@@ -2,7 +2,7 @@
  * \project Bataille Navale
  * \author Yann Fanha
  * \date 04.03.2020
- * \version 0.1
+ * \version 0.1 (pour le 18.03.2020)
  */
 
 #include <stdio.h>
