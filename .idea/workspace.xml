@@ -11,7 +11,35 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76a43db1-e2f7-4082-99bc-0bb89351864b" name="Default Changelist" comment="" />
+    <list default="true" id="76a43db1-e2f7-4082-99bc-0bb89351864b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/Bataille_Navale.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/Bataille_Navale.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/Bataille_Navale.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/Bataille_Navale.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/3.15.3/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/3.15.3/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/3.15.3/CMakeRCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/3.15.3/CMakeRCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/3.15.3/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/3.15.3/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdC/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdC/a.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/C.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/main.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/objects.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +49,9 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Yu1sZI6hHsHdtUtEanpj6Wa33t" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -33,12 +64,27 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Bataille-Navale/CMakeLists.txt" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="Bataille_Navale" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Bataille_Navale" TARGET_NAME="Bataille_Navale" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Bataille_Navale" RUN_TARGET_NAME="Bataille_Navale">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -48,11 +94,23 @@
       <option name="presentableId" value="Default" />
       <updated>1583777873232</updated>
       <workItem from="1583777875940" duration="7024000" />
+      <workItem from="1583923314207" duration="53000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="550" y="168" key="FileChooserDialogImpl" timestamp="1583777917582">
