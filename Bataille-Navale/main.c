@@ -48,11 +48,11 @@ void jouer(){
 
 
     //Affichage de la grille
-    for (int t = 0; t < SIZE_ROW; t++){ //Afficher l'en-tete des colonnes
-        if(t == 0){
-            printf("%8c", teteDeGrille[t]);
+    for (int lettre = 0; lettre < SIZE_ROW; lettre++){ //Afficher l'en-tete des colonnes
+        if(lettre == 0){
+            printf("%8c", teteDeGrille[lettre]);
         }else{
-            printf("%7c", teteDeGrille[t]);
+            printf("%7c", teteDeGrille[lettre]);
         }
     }
     printf("\n");
@@ -72,7 +72,7 @@ void jouer(){
     printf(" Coordonnées de shoot ");
     printf("\nHorizontal : ");
     scanf("%d", &coordonneeHorizon);
-    printf("\nVertical : ");
+    printf("\nVertical : %c", 186);
     scanf("%d", &coordonneeVertical);
 
     system("pause");
