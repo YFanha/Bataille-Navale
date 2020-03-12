@@ -12,11 +12,13 @@
 #include <time.h>
 #pragma execution_character_set("utf-8") //Accents
 
-#define SIZE_MAX_ROW 10 //Taille MAX des lignes du grille
-#define SIZE_MAX_COLUMN 10 //Taille MAX des colunnes de la grille
-#define ROW 9 //Taille de la grille que l'on veut (lignes)
-#define COLUMN 9 //Taille de la grille que l'on veut (colonnes)
+#define SIZE_ROW 10 //Taille MAX des lignes du grille
+#define SIZE_COLUMN 10 //Taille MAX des colunnes de la grille
 #define TETE_GRILLE  {'A','B','C','D','E','F','G','H','I','J'}
+#define GRILLE_SHOOT {{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'}};
+#define GRILLE_DE_JEU {{'-','-','2','2','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','5','-','-'},{'3','3','3','-','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','4','-','-','-','-','-','-','-','-'},{'-','4','-','-','-','-','-','-','-','-'},{'-','4','-','-','-','3','3','3','-','-'},{'-','4','-','-','-','-','-','-','-','-'},};
+
+
 
 int quit = 0; //Variable pour dire si oui ou non on sort du programme (1=OUI, 0=NON)
 
@@ -27,6 +29,7 @@ int quit = 0; //Variable pour dire si oui ou non on sort du programme (1=OUI, 0=
  * \description Afficher le titre
  */
 void afficherTitre(){
+    system("cls");
     printf("/---------------Bataille Navale---------------/\n\n");
 }
 
@@ -36,25 +39,16 @@ void afficherTitre(){
  * \description fonction qui permet de jouer
  */
 void jouer(){
-    char teteDeGrille[SIZE_MAX_ROW]  = TETE_GRILLE;
-    char grilleUser[SIZE_MAX_COLUMN][SIZE_MAX_ROW] = {
-            {'-','-','-','-','-','-','-','-','-','-'},
-            {'-','-','-','-','-','-','-','-','-','-'},
-            {'-','-','-','-','-','-','-','-','-','-'},
-            {'-','-','-','-','-','-','-','-','-','-'},
-            {'-','-','-','-','-','-','-','-','-','-'},
-            {'-','-','-','-','-','-','-','-','-','-'},
-            {'-','-','-','-','-','-','-','-','-','-'},
-            {'-','-','-','-','-','-','-','-','-','-'},
-            {'-','-','-','-','-','-','-','-','-','-'},
-            {'-','-','-','-','-','-','-','-','-','-'},
-    };
-
+    char teteDeGrille[SIZE_ROW]  = TETE_GRILLE;
+    char grilleDeShoot[SIZE_COLUMN][SIZE_ROW] = GRILLE_SHOOT;
+    char grilleAttaque[SIZE_COLUMN][SIZE_COLUMN] = GRILLE_DE_JEU;
+    int coordonneeHorizon, coordonneeVertical;
     //Afficher titre
     afficherTitre();
 
+
     //Affichage de la grille
-    for (int t = 0; t < ROW; t++){ //Afficher l'en-tete des colonnes
+    for (int t = 0; t < SIZE_ROW; t++){ //Afficher l'en-tete des colonnes
         if(t == 0){
             printf("%8c", teteDeGrille[t]);
         }else{
@@ -62,14 +56,28 @@ void jouer(){
         }
     }
     printf("\n");
-    for (int colonne = 0; colonne < COLUMN; colonne++ ){
+    for (int colonne = 0; colonne < SIZE_COLUMN; colonne++ ){
         printf("%d", colonne + 1);
-        for (int ligne = 0; ligne < ROW; ligne++){
-            printf("%7c", grilleUser[colonne][ligne] );
+        for (int ligne = 0; ligne < SIZE_ROW; ligne++){
+            if(colonne == 9 && ligne == 0) { //Bien aligner les tirets quand le nombre tout a gauche == 10
+                printf("%6c", grilleDeShoot[colonne][ligne]);
+            } else {
+                printf("%7c", grilleDeShoot[colonne][ligne]);
+            }
         }
         printf("\n");
     }
+
+    printf("\n\n");
+    printf(" Coordonnées de shoot ");
+    printf("\nHorizontal : ");
+    scanf("%d", &coordonneeHorizon);
+    printf("\nVertical : ");
+    scanf("%d", &coordonneeVertical);
+
     system("pause");
+
+
 }
 
 /**
