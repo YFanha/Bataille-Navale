@@ -11,7 +11,9 @@ stdio.h
 -
 stdlib.h
 -
-Windows.h
+windows.h
+-
+stdbool.h
 -
 string.h
 -

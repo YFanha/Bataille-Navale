@@ -7,7 +7,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <Windows.h>
+#include <windows.h>
+#include <stdbool.h>
 #include <string.h>
 #include <time.h>
 #pragma execution_character_set("utf-8") //Accents
@@ -39,45 +40,134 @@ void afficherTitre(){
  * \description fonction qui permet de jouer
  */
 void jouer(){
-    char teteDeGrille[SIZE_ROW]  = TETE_GRILLE;
-    char grilleDeShoot[SIZE_COLUMN][SIZE_ROW] = GRILLE_SHOOT;
-    char grilleAttaque[SIZE_COLUMN][SIZE_COLUMN] = GRILLE_DE_JEU;
-    int coordonneeHorizon, coordonneeVertical;
+    char teteDeGrille[SIZE_ROW]  = TETE_GRILLE; //pOUR L'AFFICHE DE LA TETE DE TITRE
+    char grilleDeShoot[SIZE_COLUMN][SIZE_ROW] = GRILLE_SHOOT; //Grille que l'utilisateur pourra voir pour savoir ou tirer
+    char grilleAttaque[SIZE_COLUMN][SIZE_COLUMN] = GRILLE_DE_JEU; //Grille qui contiendra les coordonnées des bateaux
+
+    char coordonneeHorizon;
+    int coordonneeVertical;
+
+
     //Afficher titre
     afficherTitre();
-
-
-    //Affichage de la grille
-    for (int lettre = 0; lettre < SIZE_ROW; lettre++){ //Afficher l'en-tete des colonnes
-        if(lettre == 0){
-            printf("%8c", teteDeGrille[lettre]);
-        }else{
-            printf("%7c", teteDeGrille[lettre]);
-        }
-    }
-    printf("\n");
-    for (int colonne = 0; colonne < SIZE_COLUMN; colonne++ ){
-        printf("%d", colonne + 1);
-        for (int ligne = 0; ligne < SIZE_ROW; ligne++){
-            if(colonne == 9 && ligne == 0) { //Bien aligner les tirets quand le nombre tout a gauche == 10
-                printf("%6c", grilleDeShoot[colonne][ligne]);
+    int tir = 0;
+    do {
+        //Affichage de la grille
+        for (int lettre = 0; lettre < SIZE_ROW; lettre++) { //Afficher l'en-tete des colonnes
+            if (lettre == 0) {
+                printf("%8c", teteDeGrille[lettre]);
             } else {
-                printf("%7c", grilleDeShoot[colonne][ligne]);
+                printf("%7c", teteDeGrille[lettre]);
             }
         }
         printf("\n");
-    }
+        for (int colonne = 0; colonne < SIZE_COLUMN; colonne++) {
+            printf("%d", colonne + 1);
+            for (int ligne = 0; ligne < SIZE_ROW; ligne++) {
+                if (colonne == 9 && ligne == 0) { //Bien aligner les tirets quand le nombre tout a gauche == 10
+                    printf("%6c", grilleDeShoot[colonne][ligne]);
+                } else {
+                    printf("%7c", grilleDeShoot[colonne][ligne]);
+                }
+            }
+            printf("\n");
+        }
 
-    printf("\n\n");
-    printf("Coordonnées de shoot");
-    printf("\nHorizontal : ");
-    scanf("%d", &coordonneeHorizon);
-    printf("\nVertical : %c", 186);
-    scanf("%d", &coordonneeVertical);
+        printf("\n\n");
+        printf("/--Coordonnées de shoot--/");
 
+        do {
+
+            //Demande de la coordonnées horizontal
+            printf("\nHorizontal (en lettre): ");
+            scanf("%s", &coordonneeHorizon);
+
+            //si la valeur est un nombre
+            if (coordonneeHorizon >= 48 && coordonneeHorizon <=57){
+                printf("Rentrez la coordonnée en lettre");
+            }
+
+        }while  ((coordonneeHorizon > 74 || coordonneeHorizon < 65) && (coordonneeHorizon > 106 || coordonneeHorizon < 97));
+
+        switch (coordonneeHorizon) {
+            //Si l'user met la lettre en majuscule
+            case 65:
+                coordonneeHorizon = 0; //A
+                break;
+            case 66:
+                coordonneeHorizon = 1; //B
+                break;
+            case 67:
+                coordonneeHorizon = 2; //C
+                break;
+            case 68:
+                coordonneeHorizon = 3; //D
+                break;
+            case 69:
+                coordonneeHorizon = 4; //E
+                break;
+            case 70:
+                coordonneeHorizon = 5; //F
+                break;
+            case 71:
+                coordonneeHorizon = 6; //G
+                break;
+            case 72:
+                coordonneeHorizon = 7; //H
+                break;
+            case 73:
+                coordonneeHorizon = 8; //I
+                break;
+            case 74:
+                coordonneeHorizon = 9; //J
+                break;
+                //Si l'user met la lettre en minuscule
+            case 97:
+                coordonneeHorizon = 0; //a
+                break;
+            case 98:
+                coordonneeHorizon = 1; //b
+                break;
+            case 99:
+                coordonneeHorizon = 2; //c
+                break;
+            case 100:
+                coordonneeHorizon = 3; //d
+                break;
+            case 101:
+                coordonneeHorizon = 4; //e
+                break;
+            case 102:
+                coordonneeHorizon = 5; //f
+                break;
+            case 103:
+                coordonneeHorizon = 6; //g
+                break;
+            case 104:
+                coordonneeHorizon = 7; //h
+                break;
+            case 105:
+                coordonneeHorizon = 8; //i
+                break;
+            case 106:
+                coordonneeHorizon = 9; //j
+                break;
+        }
+
+        fflush(stdin);
+
+        //Demande de la coordonnées vertical
+        printf("\nVertical  : ");
+        scanf("%d", &coordonneeVertical);
+
+        coordonneeVertical -= 1;
+
+        //tirer sur les coordonnées et afficher si un bateau a été touché
+        grilleDeShoot[coordonneeVertical][coordonneeHorizon] = 'X';
+
+        tir++;
+    }while (tir != 4); // pour les test des coordonéées !!A CHANGER!!
     system("pause");
-
-
 }
 
 /**
