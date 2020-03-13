@@ -91,7 +91,7 @@ void jouer(){
 
         switch (coordonneeHorizon) {
             //Si l'user met la lettre en majuscule
-            case 65:
+            case 65 :
                 coordonneeHorizon = 0; //A
                 break;
             case 66:
