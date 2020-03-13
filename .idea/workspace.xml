@@ -18,6 +18,7 @@
       <change beforePath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/cmake-build-debug/CMakeFiles/Bataille_Navale.dir/objects.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bataille-Navale/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Bataille-Navale/main.c" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +42,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Bataille-Navale/CMakeLists.txt" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Bataille_Navale" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Bataille_Navale" TARGET_NAME="Bataille_Navale" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Bataille_Navale" RUN_TARGET_NAME="Bataille_Navale">
@@ -68,6 +81,8 @@
       <workItem from="1584043483767" duration="126000" />
       <workItem from="1584043987064" duration="462000" />
       <workItem from="1584044452608" duration="516000" />
+      <workItem from="1584084755119" duration="80000" />
+      <workItem from="1584084845428" duration="11000" />
     </task>
     <servers />
   </component>

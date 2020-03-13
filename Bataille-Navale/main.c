@@ -69,7 +69,7 @@ void jouer(){
     }
 
     printf("\n\n");
-    printf(" Coordonnées de shoot dsfs");
+    printf("Coordonnées de shoot");
     printf("\nHorizontal : ");
     scanf("%d", &coordonneeHorizon);
     printf("\nVertical : %c", 186);
