@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-#include <stdbool.h>
 #include <string.h>
 #include <time.h>
 #pragma execution_character_set("utf-8") //Accents
@@ -17,8 +16,7 @@
 #define SIZE_COLUMN 10 //Taille MAX des colunnes de la grille
 #define TETE_GRILLE  {'A','B','C','D','E','F','G','H','I','J'}
 #define GRILLE_SHOOT {{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'}};
-#define GRILLE_DE_JEU {{'-','-','2','2','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','5','-','-'},{'3','3','3','-','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','4','-','-','-','-','-','-','-','-'},{'-','4','-','-','-','-','-','-','-','-'},{'-','4','-','-','-','3','3','3','-','-'},{'-','4','-','-','-','-','-','-','-','-'},};
-
+#define GRILLE_DE_JEU {{'-','-','2','2','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','5','-','-'},{'3','3','3','-','-','-','-','5','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','4','-','-','-','-','-','-','-','-'},{'-','4','-','-','-','-','-','-','-','-'},{'-','4','-','-','-','1','1','1','-','-'},{'-','4','-','-','-','-','-','-','-','-'},};
 /* plage de valeur decimal pour les lettre dans UTF-
  * A = 65   a = 97
  * B = 66   b = 98
@@ -69,7 +67,7 @@ void afficherGrille(char teteDeGrille[SIZE_ROW], char grilleDeShoot[SIZE_COLUMN]
     }
 }
 
-int coordonneeH(){
+char coordonneeH(){
     char coordonneeHorizon = 0;
     do {
         printf("\nHorizontal (en lettre): ");
@@ -145,12 +143,22 @@ int coordonneeH(){
         case 106:
             coordonneeHorizon = 9; //j
             break;
+        default:
+            printf("Cette coordonnées n'existe pas");
+            break;
     }
     return coordonneeHorizon;
 }
 
 int coordonneV(){
     int coordonneeVertical = 0;
+
+    do{
+        printf("\nVertical  : ");
+        scanf("%d", &coordonneeVertical);
+    }while(coordonneeVertical < 1 || coordonneeVertical > 10);
+
+    coordonneeVertical -= 1;
 }
 
 /**
@@ -163,6 +171,12 @@ void jouer(){
     char grilleDeShoot[SIZE_COLUMN][SIZE_ROW] = GRILLE_SHOOT; //Grille que l'utilisateur pourra voir pour savoir ou tirer
     char grilleAttaque[SIZE_COLUMN][SIZE_ROW] = GRILLE_DE_JEU; //Grille qui contiendra les coordonnées des bateaux
 
+    //Déclaration des variable pour savoir si un bateau a été coulé
+    int bateau5 = 5, //Bateau qui occupe 5 place
+        bateau4 = 4, //Bateau qui occupe 4 place
+        bateau3 = 3, //Bateau qui occupe 3 place
+        bateau2 = 2, //Bateau qui occupe 2 place
+        bateau1 = 3; //Bateau qui occupe 3 place
 
     char coordonneeHorizon;
     int coordonneeVertical;
@@ -170,8 +184,9 @@ void jouer(){
     //Afficher titre
     afficherTitre();
 
-    int tir = 0;
+    int tir = 0; //Pour les tests d'affichage
     do {
+        system("cls");
 
         //afficher la grille
         afficherGrille(teteDeGrille, grilleDeShoot);
@@ -185,17 +200,61 @@ void jouer(){
          coordonneeVertical = coordonneV();
         fflush(stdin);
 
-        //Demande de la coordonnées vertical
-        printf("\nVertical  : ");
-        scanf("%d", &coordonneeVertical);
 
-        coordonneeVertical -= 1;
 
         //tirer sur les coordonnées et afficher si un bateau a été touché
-        grilleDeShoot[coordonneeVertical][coordonneeHorizon] = 'X';
+        //tirer sur les coordonnées et afficher si un bateau a été touché
+        if(grilleAttaque[coordonneeVertical][coordonneeHorizon] == '2'){
+            printf("\nUn bateau a été touché.");
+            grilleDeShoot[coordonneeVertical][coordonneeHorizon] = 'T';
+
+            bateau2 -= 1;
+            if(bateau2 == 0){
+                printf("\nun bateau a été coulé.");
+            }
+        } else if (grilleAttaque[coordonneeVertical][coordonneeHorizon] == '3'){
+            printf("\nUn bateau a été touché.");
+            grilleDeShoot[coordonneeVertical][coordonneeHorizon] = 'T';
+
+            bateau3 -= 1;
+            if(bateau3 == 0){
+                printf("\nun bateau a été coulé.");
+            }
+        } else if (grilleAttaque[coordonneeVertical][coordonneeHorizon] == '4'){
+            printf("\nUn bateau a été touché.");
+            grilleDeShoot[coordonneeVertical][coordonneeHorizon] = 'T';
+
+            bateau4 -= 1;
+            if(bateau4 == 0){
+                printf("\nun bateau a été coulé.");
+            }
+        } else if (grilleAttaque[coordonneeVertical][coordonneeHorizon] == '5'){
+            printf("\nUn bateau a été touché.");
+            grilleDeShoot[coordonneeVertical][coordonneeHorizon] = 'T';
+
+            bateau5 -= 1;
+            if(bateau5 == 0){
+                printf("\nun bateau a été coulé.");
+            }
+        } else if(grilleAttaque[coordonneeVertical][coordonneeHorizon] == '1'){
+            printf("\nUn bateau a été touché.");
+            grilleDeShoot[coordonneeVertical][coordonneeHorizon] = 'T';
+
+            bateau1 -= 1;
+            if(bateau1 == 0){
+                printf("\nun bateau a été coulé.");
+            }
+        } else {
+            printf("\nAucun bateau n'a été touché.");
+            grilleDeShoot[coordonneeVertical][coordonneeHorizon] = 'X';
+        }
+
+        printf("\n");
+        printf("\n");
+        system("pause");
 
         tir++;
-    }while (tir != 4); // pour les test des coordonéées !!A CHANGER!!
+    }while (bateau2 != 0 || bateau3 != 0 || bateau4 != 0 || bateau5 != 0); // pour les test des coordonéées !!A CHANGER!!
     system("pause");
 }
 
