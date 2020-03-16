@@ -43,6 +43,12 @@ void afficherTitre(){
     printf("/---------------Bataille Navale---------------/\n\n");
 }
 
+/**
+ * \author Yann Fanha
+ * \16.03.2020
+ * \description Fonction qui permet de demander la valeur de la coordonnée veritcal
+ * @param teteDeGrille[SIZE_ROW] grilleDeShoot[SIZE_COLUMN][SIZE_ROW]
+ */
 void afficherGrille(char teteDeGrille[SIZE_ROW], char grilleDeShoot[SIZE_COLUMN][SIZE_ROW]){
 
     //Affichage de la grille
@@ -67,6 +73,12 @@ void afficherGrille(char teteDeGrille[SIZE_ROW], char grilleDeShoot[SIZE_COLUMN]
     }
 }
 
+/**
+ * \author Yann Fanha
+ * \16.03.2020
+ * \description Fonction qui permet de demander la valeur de la coordonnée horizontal
+ * @return coordonneeHozion
+ */
 char coordonneeH(){
     char coordonneeHorizon = 0;
     do {
@@ -150,15 +162,24 @@ char coordonneeH(){
     return coordonneeHorizon;
 }
 
+/**
+ * \author Yann Fanha
+ * \16.03.2020
+ * \description Fonction qui permet de demander la valeur de la coordonnée veritcal
+ * @return coordonneeVertical
+ */
 int coordonneV(){
     int coordonneeVertical = 0;
 
     do{
         printf("\nVertical  : ");
+        fflush(stdin);
         scanf("%d", &coordonneeVertical);
     }while(coordonneeVertical < 1 || coordonneeVertical > 10);
 
     coordonneeVertical -= 1;
+
+    return coordonneeVertical;
 }
 
 /**
@@ -178,32 +199,17 @@ void jouer(){
         bateau2 = 2, //Bateau qui occupe 2 place
         bateau1 = 3; //Bateau qui occupe 3 place
 
-    char coordonneeHorizon;
-    int coordonneeVertical;
+    char coordonneeHorizon = 'k';
+    int coordonneeVertical = 0, nbrtirs = -1;
 
-    //Afficher titre
-    afficherTitre();
 
-    int tir = 0; //Pour les tests d'affichage
+
     do {
         system("cls");
 
-        //afficher la grille
-        afficherGrille(teteDeGrille, grilleDeShoot);
+        nbrtirs++;
 
-        printf("\n\n");
-        printf("/--Coordonnées de shoot--/");
-
-        //Demander les coordonnées de shoot
-         coordonneeHorizon = coordonneeH();
-
-         coordonneeVertical = coordonneV();
-        fflush(stdin);
-
-
-
-        //tirer sur les coordonnées et afficher si un bateau a été touché
-        //tirer sur les coordonnées et afficher si un bateau a été touché
+        //vérification si un bateau a été touché + affichage du bon message
         if(grilleAttaque[coordonneeVertical][coordonneeHorizon] == '2'){
             printf("\nUn bateau a été touché.");
             grilleDeShoot[coordonneeVertical][coordonneeHorizon] = 'T';
@@ -244,17 +250,38 @@ void jouer(){
             if(bateau1 == 0){
                 printf("\nun bateau a été coulé.");
             }
-        } else {
+        } else if (nbrtirs != 0){
             printf("\nAucun bateau n'a été touché.");
             grilleDeShoot[coordonneeVertical][coordonneeHorizon] = 'X';
+        } else {
+            //Afficher titre
+            afficherTitre();
         }
 
         printf("\n");
-        printf("\n");
-        system("pause");
 
-        tir++;
-    }while (bateau2 != 0 || bateau3 != 0 || bateau4 != 0 || bateau5 != 0); // pour les test des coordonéées !!A CHANGER!!
+        //afficher la grille
+        afficherGrille(teteDeGrille, grilleDeShoot);
+
+
+
+
+        //Demander les coordonnées de shoot si le jeu n'est pas fini
+        if(bateau2 != 0 || bateau3 != 0 || bateau4 != 0 || bateau5 != 0 || bateau1 != 0){
+            printf("\n\n");
+            printf("/--Coordonnées de shoot--/");
+
+             coordonneeHorizon = coordonneeH();
+             coordonneeVertical = coordonneV();
+             fflush(stdin);
+        }
+
+
+        nbrtirs++;
+        printf("\n");
+        printf("\n");
+
+    }while (bateau2 != 0 || bateau3 != 0 || bateau4 != 0 || bateau5 != 0 || bateau1 != 0); // pour les test des coordonéées !!A CHANGER!!
     system("pause");
 }
 
@@ -301,7 +328,7 @@ void menu(int choix){
     printf("\n4 - Aide");
     printf("\n5 - Quitter\n->");
     scanf("%d", &choix);
-
+    fflush(stdin);
     system("cls");
 
     //appeller la bonne fonction
