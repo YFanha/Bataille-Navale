@@ -1,0 +1,12 @@
+
+
+|--Voici l'aide!--| 
+
+Lorsque c'est indiqué, rentrez les coordonnées de la case, là où vous souhaitez tirer.
+
+Si un bateau a été touché, la case sera marquée d'un 'T', sinon elle sera marquée d'un 'X'. 
+De plus, un message sera affiché au dessus de la grille. Il affichera également si un bateau a été coulé, ce qui n'est pas affiché dans la grille.
+
+En résumé...
+X = Aucun bateau n'a été touché.
+T = Un bateau a été touché.

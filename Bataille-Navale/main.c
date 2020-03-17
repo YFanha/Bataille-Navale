@@ -294,7 +294,7 @@ void aide(){
     FILE*fichierAide = NULL;
     int aide;
 
-    fichierAide = fopen("DataBase\\documentation.txt", "r"); //Ouvre le documents
+    fichierAide = fopen("DataBase\\aide.txt", "r"); //Ouvre le documents
 
     if(fichierAide != NULL){ //Si le fichier s'ouvre
         afficherTitre();
@@ -302,7 +302,7 @@ void aide(){
             aide = fgetc(fichierAide);
 
             printf("%c", aide);
-        }while(aide != EOF);
+        }while(aide != EOF); //EOF == End Of File
 
         fclose(fichierAide);
 
@@ -336,10 +336,16 @@ void menu(int choix){
         case 1:jouer();
             break;
 
-        case 2: printf("Fonction pas encore disponible.");
+        case 2: printf("Fonction pas encore disponible.\n");
+                system("Pause");
+                system("cls");
+                menu(choix);
             break;
 
-        case 3: printf("Fonction indisponible");
+        case 3: printf("Fonction indisponible\n");
+                system("Pause");
+                system("cls");
+                menu(choix);
             break;
 
         case 4: aide();
