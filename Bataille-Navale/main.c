@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <windows.h>
 #include <string.h>
+#include <time.h>
 #include <ctype.h>
 #pragma execution_character_set("utf-8") //Accents
 
@@ -34,6 +35,12 @@ int quit = 0; //Variable pour dire si oui ou non on sort du programme (1=OUI, 0=
 void afficherTitre(){
     system("cls");
     printf("/---------------Bataille Navale---------------/\n\n");
+}
+
+char authentification(){
+    char pseudo = 0;
+
+    return pseudo;
 }
 
 /**
@@ -249,9 +256,7 @@ void menu(int choix){
             break;
 
         case 2: printf("Fonction pas encore disponible.\n");
-                system("Pause");
-                system("cls");
-                menu(choix);
+                authentification();
             break;
 
         case 3: printf("Fonction indisponible\n");
