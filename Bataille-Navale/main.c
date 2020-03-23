@@ -13,6 +13,7 @@
 #include <ctype.h>
 #pragma execution_character_set("utf-8") //Accents
 
+#define SIZE_MAX_PSEUDO 30
 #define SIZE_ROW 10 //Taille MAX des lignes du grille
 #define SIZE_COLUMN 10 //Taille MAX des colunnes de la grille
 #define TETE_GRILLE  {'A','B','C','D','E','F','G','H','I','J'}
@@ -24,7 +25,10 @@ typedef struct {;
     int y;
 }coordonnee;
 
+
+char pseudo[SIZE_MAX_PSEUDO]; //(Car je ne trouvais pas comment return une chaîne de caractère)
 int quit = 0; //Variable pour dire si oui ou non on sort du programme (1=OUI, 0=NON)
+int dejaEnregistrer = 0; //Pseudo si on est déjà enregistrer ou non
 
 
 /**
@@ -37,10 +41,49 @@ void afficherTitre(){
     printf("/---------------Bataille Navale---------------/\n\n");
 }
 
-char authentification(){
-    char pseudo = 0;
+void afficherLesScores(){
+    FILE*fichierScore = NULL;
+    int character;
 
-    return pseudo;
+    fichierScore = fopen("DataBase\\score.txt", "r");
+
+    if(fichierScore != NULL) {
+        afficherTitre();
+        do {
+            character = fgetc(fichierScore);
+
+            printf("%c", character);
+        } while (character != EOF);
+
+        fclose(fichierScore);
+    } else {
+        printf("Ce service n'est actuellement pas disponible. Envoyez un mail à l'adresse Yann.FANHA-DIAS@cpnv.ch pour obtenir de l'aide.\n");
+    }
+
+    printf("\n\n");
+    system("pause");
+}
+
+/**
+ * \author Yann Fanha
+ * \date 21.03.2020
+ * \description Demande du pseudo du joueur
+ */
+void authentification(){
+    int changePseudo;
+
+    if(dejaEnregistrer == 0){
+        printf("Entrez votre nom : ");
+        scanf("%s", pseudo);
+    } else {
+        printf("Vous êtes déjà enregistrer sous le pseudo de %s. Voulez-vous changer de pseudo ? (o/n)", pseudo);
+        scanf("%d", &changePseudo);
+
+        if(changePseudo == 1) {
+            dejaEnregistrer = 0;
+            authentification();
+        }
+    }
 }
 
 /**
@@ -90,7 +133,7 @@ coordonnee demandeCoordonnee(){
             printf("Rentrez la coordonnée en lettre");
         }
 
-    }while ( !isalpha(coordonneeXY.x) );
+    }while ( !isalpha(coordonneeXY.x) || (coordonneeXY.x > 'j' && coordonneeXY.x <= 'z') || (coordonneeXY.x > 'J' && coordonneeXY.x <= 'Z'));
 
     coordonneeXY.x = toupper(coordonneeXY.x);
     coordonneeXY.x -= 'A';
@@ -116,6 +159,7 @@ void jouer(){
     char grilleDeShoot[SIZE_COLUMN][SIZE_ROW] = GRILLE_SHOOT; //Grille que l'utilisateur pourra voir pour savoir ou tirer
     char grilleAttaque[SIZE_COLUMN][SIZE_ROW] = GRILLE_DE_JEU; //Grille qui contiendra les coordonnées des bateaux
 
+
     //Déclaration des variable pour savoir si un bateau a été coulé
     int bateau5 = 5, //Bateau qui occupe 5 place
         bateau4 = 4, //Bateau qui occupe 4 place
@@ -123,66 +167,70 @@ void jouer(){
         bateau2 = 2, //Bateau qui occupe 2 place
         bateau1 = 3; //Bateau qui occupe 3 place
 
-        int nbrtirs = -1;
-    
-    coordonnee coordonneeXY={'k',0};
+        int nbrtirs = 0;
+        int louper = 0;
+        coordonnee coordonneeXY={0,0};
 
 
     do {
+
         system("cls");
 
-        nbrtirs++;
 
-        //vérification si un bateau a été touché + affichage du bon message
-        if(grilleAttaque[coordonneeXY.y][coordonneeXY.x] == '2'){
-            printf("\nUn bateau a été touché.");
-            grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+        switch (grilleAttaque[coordonneeXY.y][coordonneeXY.x]){
+            case '1':
+                printf("\nUn bateau a été touché.\n");
+                grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+                bateau1 -= 1;
+                if(bateau1 == 0){
+                    printf("Un bateau a été coulé\n");
+                }
+                break;
 
-            bateau2 -= 1;
-            if(bateau2 == 0){
-                printf("\nun bateau a été coulé.");
-            }
-        } else if (grilleAttaque[coordonneeXY.y][coordonneeXY.x] == '3'){
-            printf("\nUn bateau a été touché.");
-            grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+            case '2':
+                printf("\nUn bateau a été touché.\n");
+                grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+                bateau2 -= 1;
+                if(bateau2 == 0){
+                    printf("Un bateau a été coulé\n");
+                }
+                break;
 
-            bateau3 -= 1;
-            if(bateau3 == 0){
-                printf("\nun bateau a été coulé.");
-            }
-        } else if (grilleAttaque[coordonneeXY.y][coordonneeXY.x] == '4'){
-            printf("\nUn bateau a été touché.");
-            grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+            case '3':
+                printf("\nUn bateau a été touché.\n");
+                grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+                bateau3 -= 1;
+                if(bateau3 == 0){
+                    printf("Un bateau a été coulé\n");
+                }
+                break;
 
-            bateau4 -= 1;
-            if(bateau4 == 0){
-                printf("\nun bateau a été coulé.");
-            }
-        } else if (grilleAttaque[coordonneeXY.y][coordonneeXY.x] == '5'){
-            printf("\nUn bateau a été touché.");
-            grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+            case '4':
+                printf("\nUn bateau a été touché.\n");
+                grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+                bateau4 -= 1;
+                if(bateau4 == 0){
+                    printf("Un bateau a été coulé\n");
+                }
+                break;
 
-            bateau5 -= 1;
-            if(bateau5 == 0){
-                printf("\nun bateau a été coulé.");
-            }
-        } else if(grilleAttaque[coordonneeXY.y][coordonneeXY.x] == '1'){
-            printf("\nUn bateau a été touché.");
-            grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+            case '5':
+                printf("\nUn bateau a été touché.\n");
+                grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+                bateau5 -= 1;
+                if(bateau5 == 0){
+                    printf("Un bateau a été coulé\n");
+                }
+                break;
 
-            bateau1 -= 1;
-            if(bateau1 == 0){
-                printf("\nun bateau a été coulé.");
-            }
-        } else if (nbrtirs != 0){
-            printf("\nAucun bateau n'a été touché.");
-            grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'X';
-        } else {
-            //Afficher titre
-            afficherTitre();
+            default:
+                if(nbrtirs > 0) {
+                    printf("\nAucun bateau n'a été touché.\n");
+                    grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'X';
+                    louper += 1;
+                }
+                break;
         }
-
-        printf("\n");
 
         //afficher la grille
         afficherGrille(teteDeGrille, grilleDeShoot);
@@ -196,7 +244,7 @@ void jouer(){
             fflush(stdin);
         }
 
-        
+
         nbrtirs++;
         printf("\n");
         printf("\n");
@@ -241,6 +289,7 @@ void aide(){
  */
 void menu(int choix){
     afficherTitre();
+
     printf("1 - Jouer");
     printf("\n2 - S'enregistrer");
     printf("\n3 - Scores");
@@ -248,21 +297,20 @@ void menu(int choix){
     printf("\n5 - Quitter\n->");
     scanf("%d", &choix);
     fflush(stdin);
+
     system("cls");
+
+    char nom[25] = "Yann";
 
     //appeller la bonne fonction
     switch(choix){
         case 1:jouer();
             break;
 
-        case 2: printf("Fonction pas encore disponible.\n");
-                authentification();
+        case 2: authentification();
             break;
 
-        case 3: printf("Fonction indisponible\n");
-                system("Pause");
-                system("cls");
-                menu(choix);
+        case 3: afficherLesScores();
             break;
 
         case 4: aide();
@@ -289,6 +337,7 @@ int main() {
 
     printf("\n\n");
 
+    return 0;
     if(quit == 0){
         return main();
     } else {
