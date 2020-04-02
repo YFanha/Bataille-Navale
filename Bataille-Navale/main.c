@@ -20,7 +20,8 @@
 #define TETE_GRILLE  {'A','B','C','D','E','F','G','H','I','J'}
 #define GRILLE_SHOOT {{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'}}
 #define TAILLE_MAX_COORDONNEE 3
-#define NOMBRE_GRILLE_MAX 5
+#define NUMERO_GRILLE_MIN 0
+#define NUMERO_GRILLE_MAX 4 //Correspond on numero de la grille max dans le tableau (donc il y a 5 grille en tout)R
 #define PREMIERE_CORDONNEE_GRILLE 2
 #define LONGEUR_MAX_LIGNE 50
 #define LONG_MAX_NOM_FICHIER 100
@@ -61,7 +62,7 @@ void grilleAleatoire(){
     int character = -1;
     char ligne[LONGEUR_MAX_LIGNE];
     char numeroBateau =0;
-    char grille[NOMBRE_GRILLE_MAX][LONG_MAX_NOM_FICHIER] = NOM_FICHIER_GRILLE;
+    char grille[NUMERO_GRILLE_MAX+1][LONG_MAX_NOM_FICHIER] = NOM_FICHIER_GRILLE;
     char grilleVide[SIZE_COLUMN][SIZE_ROW] = GRILLE_SHOOT;
     coordonnee coordonneeXY = {0,0};
 
@@ -70,8 +71,8 @@ void grilleAleatoire(){
     remettreGrilleZero();
 
     FILE*fichierGrille = NULL;
-    //numeroDeGrille = rand() % NOMBRE_GRILLE_MAX + 1;
-    numeroDeGrille = 2;
+    srand( time(NULL));
+    numeroDeGrille = rand() % NUMERO_GRILLE_MAX + 1;
     fichierGrille = fopen(grille[numeroDeGrille], "r");
 
 
@@ -85,12 +86,11 @@ void grilleAleatoire(){
             numeroBateau = ligne[0];
 
 
-            printf("Bateau no %c\n", numeroBateau);
+            printf("Bateau No %c\n", numeroBateau);
 
             for (int i = PREMIERE_CORDONNEE_GRILLE; i <= MAX; i++) {
                 if (isdigit(ligne[i])) {
                     coordonneeXY.y = ligne[i] - '0';
-                    printf("%d-%d\n", coordonneeXY.y, coordonneeXY.x);
                     grilleAttaque[coordonneeXY.y][coordonneeXY.x] = numeroBateau;
                 } else if (isalpha(ligne[i])) {
                     coordonneeXY.x = ligne[i];
@@ -98,7 +98,6 @@ void grilleAleatoire(){
                     coordonneeXY.x -= 'A';
                 }
             }
-
         }while(character != EOF);
 
     } else {
@@ -108,6 +107,7 @@ void grilleAleatoire(){
 
     fclose(fichierGrille);
     system("pause");
+    system("cls");
 }
 
 /**
@@ -164,14 +164,15 @@ void authentification(){
 
     if((void *) dejaEnregistrer == NULL){
         printf("Entrez votre nom : ");
-        scanf("%s", pseudo);
+        gets(pseudo);
+        fflush(stdin);
         dejaEnregistrer = true;
     } else {
         printf("Vous êtes déjà enregistrer sous le pseudo de %s. Voulez-vous changer de pseudo ? (oui=1 / non=0)", pseudo);
         scanf("%d", &changePseudo);
 
         if(changePseudo == 1) {
-            dejaEnregistrer = 0;
+            dejaEnregistrer = true;
             authentification();
         }
     }
@@ -306,7 +307,7 @@ void jouer(){
         coordonnee coordonneeXY={0,0};
 
 
-    /*do {
+    do {
 
         system("cls");
 
@@ -386,29 +387,9 @@ void jouer(){
         printf("\n");
         printf("\n");
 
-    }while (bateau2 != 0 || bateau3 != 0 || bateau4 != 0 || bateau5 != 0 || bateau1 != 0);*/
+    }while (bateau2 != 0 || bateau3 != 0 || bateau4 != 0 || bateau5 != 0 || bateau1 != 0);
 
-    //inscrireLeScore(louper);
-
-    for (int lettre = 0; lettre < SIZE_ROW; lettre++) { //Afficher l'en-tete des colonnes
-        if (lettre == 0) {
-            printf("%8c", teteDeGrille[lettre]);
-        } else {
-            printf("%7c", teteDeGrille[lettre]);
-        }
-    }
-    printf("\n");
-    for (int colonne = 0; colonne < SIZE_COLUMN; colonne++) {
-        printf("%d", colonne + 1);
-        for (int ligne = 0; ligne < SIZE_ROW; ligne++) {
-            if (colonne == 9 && ligne == 0) { //Bien aligner les tirets quand le nombre tout a gauche == 10
-                printf("%6c", grilleAttaque[colonne][ligne]);
-            } else {
-                printf("%7c", grilleAttaque[colonne][ligne]);
-            }
-        }
-        printf("\n");
-    }
+    inscrireLeScore(louper);
 
     system("pause");
 }
@@ -466,10 +447,8 @@ void menu(int choix){
         case 1:
             if((void *) dejaEnregistrer == NULL){
                 authentification();
-                jouer();
-            } else{
-                jouer();
             }
+            jouer();
             break;
 
         case 2: authentification();
