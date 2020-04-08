@@ -140,8 +140,6 @@ void grilleAleatoire() {
 
     if (fichierGrille != NULL) {
 
-        printf("%s\n", grille[numeroDeGrille]);
-
         do {
             character = fgetc(fichierGrille);
             fgets(ligne, sizeof(ligne), fichierGrille);
@@ -152,11 +150,6 @@ void grilleAleatoire() {
                 if (isdigit(ligne[i])) {
                     coordonneeXY.y = ligne[i] - '0';
                     grilleAttaque[coordonneeXY.y][coordonneeXY.x] = numeroBateau;
-
-                    //Rentrer l'événement dans l'historique
-                    date = heureActuelle();
-                    fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Chargement des coordonnées du bateaux N°%d.\n",
-                            date.day, date.mois, date.an, date.h, date.min, date.sec, numeroBateau);
 
                 } else if (isalpha(ligne[i])) {
                     coordonneeXY.x = ligne[i];
@@ -178,7 +171,6 @@ void grilleAleatoire() {
 
     fclose(fichierGrille);
     fclose(fichierLogs);
-    system("pause");
     system("cls");
 }
 
@@ -196,13 +188,13 @@ void inscrireLeScore(int louper) {
     //Ouvertures des fichier des faits
     FILE *fichierLogs = fopen("DataBase\\logs.txt", "a");
 
-    //Inscrire le score dans le fichier
-    fprintf(fichierScore, "%s %20d\n", pseudo, louper);
-
     //Rentrer l'événement dans l'historique
     date = heureActuelle();
     fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Inscription du scores dans le fichier.\n", date.day, date.mois,
             date.an, date.h, date.min, date.sec);
+
+    //Inscrire le score dans le fichier
+    fprintf(fichierScore, "%s %20d\n", pseudo, louper);
 
 
     fclose(fichierScore);
@@ -280,19 +272,21 @@ void authentification() {
         date = heureActuelle();
         fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Enregistrement sous le nom de : %s.\n", date.day, date.mois,
                 date.an, date.h, date.min, date.sec, pseudo);
+
     } else {
         printf("Vous êtes déjà enregistrer sous le pseudo de %s. Voulez-vous changer de pseudo ? (oui=1 / non=0)",
                pseudo);
         scanf("%d", &changePseudo);
 
         if (changePseudo == 1) {
-            dejaEnregistrer = false;
-            authentification();
 
             //Rentrer l'événement dans l'historique
             date = heureActuelle();
             fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Demande de changement de pseudo.\n", date.day, date.mois,
                     date.an, date.h, date.min, date.sec);
+
+            dejaEnregistrer = false;
+            authentification();
         }
     }
 
@@ -423,7 +417,7 @@ void jouer() {
     char teteDeGrille[SIZE_ROW] = TETE_GRILLE; //POUR L'AFFICHE DE LA TETE DE TITRE
     char grilleDeShoot[SIZE_COLUMN][SIZE_ROW] = GRILLE_SHOOT; //Grille que l'utilisateur pourra voir pour savoir ou tirer
     int nbrtirs = 0;
-    int louper = 0;
+    int nbrLouper = 0;
 
     //Déclaration des variables pour savoir si un bateau a été coulé
     int bateau5 = 5, //Bateau qui occupe 5 place
@@ -439,6 +433,7 @@ void jouer() {
     grilleAleatoire();
 
     FILE *fichierLogs = fopen("DataBase\\logs.txt", "a");
+
     //Rentrer l'événement dans l'historique
     date = heureActuelle();
     fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Lancement d'une partie.\n", date.day, date.mois, date.an, date.h,
@@ -502,7 +497,7 @@ void jouer() {
                     if (nbrtirs > 0) {
                         printf("\nAucun bateau n'a été touché.\n");
                         grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'X';
-                        louper += 1;
+                        nbrLouper += 1;
                     }
                     break;
             } //Fin du switch
@@ -527,12 +522,14 @@ void jouer() {
 
     } while (bateau2 != 0 || bateau3 != 0 || bateau4 != 0 || bateau5 != 0 || bateau1 != 0);
 
+    printf("\nVous avez tiré %d fois et vous avez loupé %d fois\n", nbrtirs, nbrLouper);
+
     //Rentrer l'événement dans l'historique
     date = heureActuelle();
     fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Fin de la partie.\n", date.day, date.mois, date.an, date.h,
             date.min, date.sec);
 
-    inscrireLeScore(louper);
+    inscrireLeScore(nbrLouper);
 
     fclose(fichierLogs);
     system("pause");
@@ -561,6 +558,10 @@ void aide() {
 
         afficherTitre();
 
+        //Rentrer l'événement dans l'historique
+        fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Affichage de l'aide.\n", date.day, date.mois, date.an, date.h,
+                date.min, date.sec);
+
         do {
             aide = fgetc(fichierAide);
 
@@ -569,9 +570,6 @@ void aide() {
 
         fclose(fichierAide);
 
-        //Rentrer l'événement dans l'historique
-        fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Affichage de l'aide.\n", date.day, date.mois, date.an, date.h,
-                date.min, date.sec);
 
     } else {
 

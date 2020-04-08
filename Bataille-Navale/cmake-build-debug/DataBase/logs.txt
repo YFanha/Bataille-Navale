@@ -4,3 +4,262 @@
 08/04/2020 19:30:08 Ouverture du fichier des scores.
 08/04/2020 19:30:08 Affichage des scores précédents.
 08/04/2020 19:30:13 Enregistrement sous le nom de : YFanha
+08/04/2020 21:52:10 Ouverture du fichier de l'aide.
+08/04/2020 21:52:10 Affichage de l'aide.
+08/04/2020 21:52:10 Fermeture de l'aide.
+08/04/2020 21:52:21 Ouverture du fichier des scores.
+08/04/2020 21:52:21 Affichage des scores précédents.
+08/04/2020 21:52:31 Enregistrement sous le nom de : Yann.
+08/04/2020 21:52:39 Enregistrement sous le nom de : YFanha.
+08/04/2020 21:52:39 Demande de changement de pseudo.
+08/04/2020 21:52:41 Remise de la grille d'attaque a zéro.
+08/04/2020 21:52:41 Ouverture du fichier de la grille choisie aléatoirement.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°49.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°49.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°49.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°50.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°50.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°51.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°51.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°51.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°52.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°52.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°52.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°52.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°53.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°53.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°53.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°53.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°53.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°53.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°53.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°53.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°53.
+08/04/2020 21:52:41 Chargement des coordonnées du bateaux N°53.
+08/04/2020 21:52:41 Fin de chargement de la grille N°5.
+08/04/2020 21:52:47 L'utilisateur tire sur la case a1.
+08/04/2020 21:52:49 L'utilisateur tire sur la case b1.
+08/04/2020 21:52:50 L'utilisateur tire sur la case c1.
+08/04/2020 21:52:51 L'utilisateur tire sur la case d1.
+08/04/2020 21:52:56 L'utilisateur tire sur la case j10.
+08/04/2020 21:52:58 L'utilisateur tire sur la case j1.
+08/04/2020 21:52:59 L'utilisateur tire sur la case j5.
+08/04/2020 21:53:02 L'utilisateur tire sur la case j6.
+08/04/2020 21:53:04 L'utilisateur tire sur la case j4.
+08/04/2020 21:53:07 L'utilisateur tire sur la case j3.
+08/04/2020 21:53:14 L'utilisateur tire sur la case e5.
+08/04/2020 21:53:16 L'utilisateur tire sur la case e4.
+08/04/2020 21:53:18 L'utilisateur tire sur la case e6.
+08/04/2020 21:53:20 L'utilisateur tire sur la case f5.
+08/04/2020 21:53:23 L'utilisateur tire sur la case g5.
+08/04/2020 21:53:25 L'utilisateur tire sur la case h5.
+08/04/2020 21:53:27 L'utilisateur tire sur la case d5.
+08/04/2020 21:53:36 L'utilisateur tire sur la case f10.
+08/04/2020 21:53:38 L'utilisateur tire sur la case c10.
+08/04/2020 21:53:43 L'utilisateur tire sur la case c7.
+08/04/2020 21:53:46 L'utilisateur tire sur la case f7.
+08/04/2020 21:53:48 L'utilisateur tire sur la case d7.
+08/04/2020 21:53:52 L'utilisateur tire sur la case a5.
+08/04/2020 21:53:55 L'utilisateur tire sur la case a10.
+08/04/2020 21:53:59 L'utilisateur tire sur la case g1.
+08/04/2020 21:54:00 L'utilisateur tire sur la case e1.
+08/04/2020 21:54:02 L'utilisateur tire sur la case f1.
+08/04/2020 21:54:05 L'utilisateur tire sur la case g7.
+08/04/2020 21:54:17 L'utilisateur tire sur la case c3.
+08/04/2020 21:54:19 L'utilisateur tire sur la case c4.
+08/04/2020 21:54:35 L'utilisateur tire sur la case e2.
+08/04/2020 21:54:41 L'utilisateur tire sur la case e4.
+08/04/2020 21:54:44 L'utilisateur tire sur la case e2.
+08/04/2020 21:54:46 L'utilisateur tire sur la case e3.
+08/04/2020 21:54:51 L'utilisateur tire sur la case f2.
+08/04/2020 21:54:52 L'utilisateur tire sur la case f3.
+08/04/2020 21:54:58 L'utilisateur tire sur la case b6.
+08/04/2020 21:55:05 L'utilisateur tire sur la case b3.
+08/04/2020 21:55:07 L'utilisateur tire sur la case b8.
+08/04/2020 21:55:11 L'utilisateur tire sur la case h1.
+08/04/2020 21:55:14 L'utilisateur tire sur la case i1.
+08/04/2020 21:55:16 L'utilisateur tire sur la case i10.
+08/04/2020 21:55:17 L'utilisateur tire sur la case i5.
+08/04/2020 21:55:30 L'utilisateur tire sur la case c8.
+08/04/2020 21:55:33 L'utilisateur tire sur la case d8.
+08/04/2020 21:55:35 L'utilisateur tire sur la case e8.
+08/04/2020 21:55:37 L'utilisateur tire sur la case f8.
+08/04/2020 21:55:39 L'utilisateur tire sur la case g8.
+08/04/2020 21:55:39 Inscription du scores dans le fichier.
+08/04/2020 21:52:44 Lancement d'une partie.
+08/04/2020 21:55:39 Fin de la partie.
+08/04/2020 21:59:57 Ouverture du fichier de l'aide.
+08/04/2020 21:59:57 Affichage de l'aide.
+08/04/2020 21:59:57 Fermeture de l'aide.
+08/04/2020 22:00:07 Ouverture du fichier des scores.
+08/04/2020 22:00:07 Affichage des scores précédents.
+08/04/2020 22:00:25 Enregistrement sous le nom de : YFanha.
+08/04/2020 22:00:25 Remise de la grille d'attaque a zéro.
+08/04/2020 22:00:25 Ouverture du fichier de la grille choisie aléatoirement.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°49.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°49.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°49.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°50.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°50.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°51.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°51.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°51.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°52.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°52.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°52.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°52.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°53.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°53.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°53.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°53.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°53.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°53.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°53.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°53.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°53.
+08/04/2020 22:00:25 Chargement des coordonnées du bateaux N°53.
+08/04/2020 22:00:25 Fin de chargement de la grille N°4.
+08/04/2020 22:00:37 L'utilisateur tire sur la case a1.
+08/04/2020 22:00:39 L'utilisateur tire sur la case b1.
+08/04/2020 22:00:40 L'utilisateur tire sur la case c1.
+08/04/2020 22:00:41 L'utilisateur tire sur la case d1.
+08/04/2020 22:00:43 L'utilisateur tire sur la case j10.
+08/04/2020 22:00:46 L'utilisateur tire sur la case f5.
+08/04/2020 22:00:48 L'utilisateur tire sur la case e5.
+08/04/2020 22:00:50 L'utilisateur tire sur la case g5.
+08/04/2020 22:00:52 L'utilisateur tire sur la case f4.
+08/04/2020 22:00:54 L'utilisateur tire sur la case f3.
+08/04/2020 22:00:55 L'utilisateur tire sur la case f2.
+08/04/2020 22:00:58 L'utilisateur tire sur la case f6.
+08/04/2020 22:01:03 L'utilisateur tire sur la case a10.
+08/04/2020 22:01:05 L'utilisateur tire sur la case a9.
+08/04/2020 22:01:07 L'utilisateur tire sur la case a5.
+08/04/2020 22:01:09 L'utilisateur tire sur la case j1.
+08/04/2020 22:01:11 L'utilisateur tire sur la case j5.
+08/04/2020 22:01:14 L'utilisateur tire sur la case h1.
+08/04/2020 22:01:14 L'utilisateur tire sur la case h5.
+08/04/2020 22:01:20 L'utilisateur tire sur la case h6.
+08/04/2020 22:01:24 L'utilisateur tire sur la case h4.
+08/04/2020 22:01:26 L'utilisateur tire sur la case h3.
+08/04/2020 22:01:34 L'utilisateur tire sur la case d5.
+08/04/2020 22:01:36 L'utilisateur tire sur la case c5.
+08/04/2020 22:01:39 L'utilisateur tire sur la case b5.
+08/04/2020 22:01:42 L'utilisateur tire sur la case b6.
+08/04/2020 22:01:45 L'utilisateur tire sur la case b4.
+08/04/2020 22:01:51 L'utilisateur tire sur la case c10.
+08/04/2020 22:01:55 L'utilisateur tire sur la case e10.
+08/04/2020 22:01:57 L'utilisateur tire sur la case g10.
+08/04/2020 22:02:01 L'utilisateur tire sur la case i1.
+08/04/2020 22:02:02 L'utilisateur tire sur la case i10.
+08/04/2020 22:02:03 L'utilisateur tire sur la case i5.
+08/04/2020 22:02:30 L'utilisateur tire sur la case d7.
+08/04/2020 22:02:32 L'utilisateur tire sur la case c7.
+08/04/2020 22:02:39 L'utilisateur tire sur la case g7.
+08/04/2020 22:02:41 L'utilisateur tire sur la case f7.
+08/04/2020 22:02:44 L'utilisateur tire sur la case h7.
+08/04/2020 22:02:47 L'utilisateur tire sur la case i7.
+08/04/2020 22:02:50 L'utilisateur tire sur la case j7.
+08/04/2020 22:02:57 L'utilisateur tire sur la case b2.
+08/04/2020 22:03:02 L'utilisateur tire sur la case e2.
+08/04/2020 22:03:06 L'utilisateur tire sur la case c8.
+08/04/2020 22:03:10 L'utilisateur tire sur la case ff8.
+08/04/2020 22:03:14 L'utilisateur tire sur la case g8.
+08/04/2020 22:03:16 L'utilisateur tire sur la case h8.
+08/04/2020 22:03:18 L'utilisateur tire sur la case i8.
+08/04/2020 22:03:20 L'utilisateur tire sur la case j8.
+08/04/2020 22:03:23 L'utilisateur tire sur la case e8.
+08/04/2020 22:03:36 L'utilisateur tire sur la case i2.
+08/04/2020 22:03:43 L'utilisateur tire sur la case d10.
+08/04/2020 22:03:45 L'utilisateur tire sur la case b10.
+08/04/2020 22:03:50 L'utilisateur tire sur la case b3.
+08/04/2020 22:03:52 L'utilisateur tire sur la case c3.
+08/04/2020 22:03:54 L'utilisateur tire sur la case d3.
+08/04/2020 22:03:57 L'utilisateur tire sur la case e3.
+08/04/2020 22:04:02 L'utilisateur tire sur la case d2.
+08/04/2020 22:04:05 L'utilisateur tire sur la case d4.
+08/04/2020 22:04:05 Inscription du scores dans le fichier.
+08/04/2020 22:00:30 Lancement d'une partie.
+08/04/2020 22:04:05 Fin de la partie.
+08/04/2020 22:05:59 Ouverture du fichier de l'aide.
+08/04/2020 22:05:59 Affichage de l'aide.
+08/04/2020 22:05:59 Fermeture de l'aide.
+08/04/2020 22:06:03 Ouverture du fichier des scores.
+08/04/2020 22:06:03 Affichage des scores précédents.
+08/04/2020 22:06:11 Enregistrement sous le nom de : YFanha.
+08/04/2020 22:15:29 Ouverture du fichier de l'aide.
+08/04/2020 22:15:29 Affichage de l'aide.
+08/04/2020 22:15:29 Fermeture de l'aide.
+08/04/2020 22:16:14 Ouverture du fichier des scores.
+08/04/2020 22:16:15 Affichage des scores précédents.
+08/04/2020 22:16:36 Enregistrement sous le nom de : fdsa.
+08/04/2020 22:16:45 Enregistrement sous le nom de : YFanha.
+08/04/2020 22:16:41 Demande de changement de pseudo.
+08/04/2020 22:16:57 Remise de la grille d'attaque a zéro.
+08/04/2020 22:16:57 Ouverture du fichier de la grille choisie aléatoirement.
+08/04/2020 22:16:57 Fin de chargement de la grille N°4.
+08/04/2020 22:16:59 L'utilisateur tire sur la case a1.
+08/04/2020 22:17:01 L'utilisateur tire sur la case j1.
+08/04/2020 22:17:02 L'utilisateur tire sur la case j10.
+08/04/2020 22:17:03 L'utilisateur tire sur la case a10.
+08/04/2020 22:17:12 L'utilisateur tire sur la case e5.
+08/04/2020 22:17:13 L'utilisateur tire sur la case f5.
+08/04/2020 22:17:15 L'utilisateur tire sur la case a5.
+08/04/2020 22:17:17 L'utilisateur tire sur la case j5.
+08/04/2020 22:17:19 L'utilisateur tire sur la case e1.
+08/04/2020 22:17:22 L'utilisateur tire sur la case f1.
+08/04/2020 22:17:24 L'utilisateur tire sur la case c10.
+08/04/2020 22:17:26 L'utilisateur tire sur la case d10.
+08/04/2020 22:17:30 L'utilisateur tire sur la case g10.
+08/04/2020 22:17:33 L'utilisateur tire sur la case i1.
+08/04/2020 22:17:35 L'utilisateur tire sur la case i5.
+08/04/2020 22:17:36 L'utilisateur tire sur la case 1i0.
+08/04/2020 22:17:39 L'utilisateur tire sur la case c5.
+08/04/2020 22:17:41 L'utilisateur tire sur la case c1.
+08/04/2020 22:17:43 L'utilisateur tire sur la case d1.
+08/04/2020 22:17:44 L'utilisateur tire sur la case d5.
+08/04/2020 22:17:47 L'utilisateur tire sur la case b7.
+08/04/2020 22:17:52 L'utilisateur tire sur la case e7.
+08/04/2020 22:17:54 L'utilisateur tire sur la case e10.
+08/04/2020 22:17:56 L'utilisateur tire sur la case f10.
+08/04/2020 22:17:58 L'utilisateur tire sur la case g1.
+08/04/2020 22:18:00 L'utilisateur tire sur la case g5.
+08/04/2020 22:18:01 L'utilisateur tire sur la case g6.
+08/04/2020 22:18:04 L'utilisateur tire sur la case h6.
+08/04/2020 22:18:05 L'utilisateur tire sur la case h10.
+08/04/2020 22:18:07 L'utilisateur tire sur la case h1.
+08/04/2020 22:18:09 L'utilisateur tire sur la case h2.
+08/04/2020 22:18:09 L'utilisateur tire sur la case h3.
+08/04/2020 22:18:11 L'utilisateur tire sur la case h4.
+08/04/2020 22:18:12 L'utilisateur tire sur la case h5.
+08/04/2020 22:18:17 L'utilisateur tire sur la case j9.
+08/04/2020 22:18:23 L'utilisateur tire sur la case a1.
+08/04/2020 22:18:25 L'utilisateur tire sur la case a2.
+08/04/2020 22:18:27 L'utilisateur tire sur la case b2.
+08/04/2020 22:18:28 L'utilisateur tire sur la case c2.
+08/04/2020 22:18:32 L'utilisateur tire sur la case d2.
+08/04/2020 22:18:34 L'utilisateur tire sur la case e2.
+08/04/2020 22:18:36 L'utilisateur tire sur la case d3.
+08/04/2020 22:18:38 L'utilisateur tire sur la case d.
+08/04/2020 22:18:40 L'utilisateur tire sur la case 4d.
+08/04/2020 22:18:51 L'utilisateur tire sur la case b.
+08/04/2020 22:18:53 L'utilisateur tire sur la case 5b.
+08/04/2020 22:18:56 L'utilisateur tire sur la case b6.
+08/04/2020 22:19:01 L'utilisateur tire sur la case b4.
+08/04/2020 22:19:15 L'utilisateur tire sur la case d9.
+08/04/2020 22:19:17 L'utilisateur tire sur la case f9.
+08/04/2020 22:19:26 L'utilisateur tire sur la case i9.
+08/04/2020 22:19:29 L'utilisateur tire sur la case i8.
+08/04/2020 22:19:32 L'utilisateur tire sur la case h8.
+08/04/2020 22:19:34 L'utilisateur tire sur la case g8.
+08/04/2020 22:19:37 L'utilisateur tire sur la case f8.
+08/04/2020 22:19:40 L'utilisateur tire sur la case e8.
+08/04/2020 22:19:51 L'utilisateur tire sur la case 8a.
+08/04/2020 22:20:09 L'utilisateur tire sur la case c.
+08/04/2020 22:20:11 L'utilisateur tire sur la case 9c.
+08/04/2020 22:20:30 L'utilisateur tire sur la case f4.
+08/04/2020 22:20:31 L'utilisateur tire sur la case f3.
+08/04/2020 22:20:33 L'utilisateur tire sur la case f2.
+08/04/2020 22:20:36 L'utilisateur tire sur la case f6.
+08/04/2020 22:20:36 Inscription du scores dans le fichier.
+08/04/2020 22:16:57 Lancement d'une partie.
+08/04/2020 22:20:36 Fin de la partie.
