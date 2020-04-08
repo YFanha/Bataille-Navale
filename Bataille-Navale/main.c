@@ -2,7 +2,11 @@
  * \project Bataille Navale
  * \author Yann Fanha
  * \date 04.03.2020
- * \version 0.1 (pour le 18.03.2020)
+ * \version 0.1
+ * \desciption Jeu de la bataille navale qui s'ouvre dans le terminal de commande
+ * *********************************************************************************************************************
+ * \version 1.0
+ * \description Rejout des fonctions suivantes; Authentification en tant que joueur, grille aléatoire dans des fichiers externes, affichage des scores précédents
  */
 
 #include <stdio.h>
@@ -12,6 +16,7 @@
 #include <time.h>
 #include <ctype.h>
 #include <stdbool.h>
+
 #pragma execution_character_set("utf-8") //Accents
 
 #define SIZE_MAX_PSEUDO 30
@@ -20,23 +25,31 @@
 #define TETE_GRILLE  {'A','B','C','D','E','F','G','H','I','J'}
 #define GRILLE_SHOOT {{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'},{'-','-','-','-','-','-','-','-','-','-'}}
 #define TAILLE_MAX_COORDONNEE 3
-#define NUMERO_GRILLE_MIN 0
-#define NUMERO_GRILLE_MAX 4 //Correspond on numero de la grille max dans le tableau (donc il y a 5 grille en tout)R
+#define NUMERO_GRILLE_MAX 4 //Correspond on numero de la grille max dans le tableau (donc il y a 5 grille en tout)
 #define PREMIERE_CORDONNEE_GRILLE 2
 #define LONGEUR_MAX_LIGNE 50
 #define LONG_MAX_NOM_FICHIER 100
 #define NOM_FICHIER_GRILLE {{"DataBase\\Grille\\grille1.txt"},{"DataBase\\Grille\\grille2.txt"},{"DataBase\\Grille\\grille3.txt"},{"DataBase\\Grille\\grille4.txt"},{"DataBase\\Grille\\grille5.txt"}}
 #define MAX 15
 
-typedef struct {;
+typedef struct { ;
     char x;
     int y;
-}coordonnee;
+} coordonnee; //Structure pour les coordonnnées horzi. et verti.
+
+typedef struct { ;
+    int h;
+    int min;
+    int sec;
+    int day;
+    int mois;
+    int an;
+} date; //Structure pour obtenir l'heure actuelle et la date
 
 char grilleAttaque[SIZE_COLUMN][SIZE_ROW];
 char pseudo[SIZE_MAX_PSEUDO] = "0"; //(Car je ne trouvais pas comment return une chaîne de caractère)
-bool quit = false; //Variable pour dire si oui ou non on sort du programme (1=OUI, 0=NON)
 bool dejaEnregistrer = false; //Dire si oui ou non on est déjà enregistrer
+
 
 
 /**
@@ -44,61 +57,119 @@ bool dejaEnregistrer = false; //Dire si oui ou non on est déjà enregistrer
  * \date 06.03.2020
  * \description Afficher le titre
  */
-void afficherTitre(){
+void afficherTitre() {
     system("cls");
     printf("/---------------Bataille Navale---------------/\n\n");
 }
 
-void remettreGrilleZero(){
-    for (int j = 0; j < SIZE_COLUMN; j++){
-        for (int  t = 0;  t < SIZE_ROW; t++) {
-            grilleAttaque[j][t] = ' ';
+/**
+ * \author Yann Fanha
+ * \date 08.04.2020
+ * \description Récuperer la date et l'heure actuelle
+ * @return date
+ */
+date heureActuelle() {
+    date date;
+    time_t now;
+
+    time(&now);
+
+    struct tm *local = localtime(&now);
+    date.h = local->tm_hour;
+    date.min = local->tm_min;
+    date.sec = local->tm_sec;
+    date.day = local->tm_mday;
+    date.mois = local->tm_mon + 1;
+    date.an = local->tm_year + 1900;
+
+
+    return date;
+}
+
+/**
+ * \author Yann Fanha
+ * \date 06.04.2020
+ * \description vider la grille d'attaquer des bateaux
+ */
+void remettreGrilleZero() {
+    for (int numeroLigne = 0; numeroLigne < SIZE_COLUMN; numeroLigne++) {
+        for (int numeroColonne = 0; numeroColonne < SIZE_ROW; numeroColonne++) {
+            grilleAttaque[numeroLigne][numeroColonne] = ' ';
         }
     }
 }
 
-void grilleAleatoire(){
+/**
+ * \author Yann Fanha
+ * \date 29.03.2020
+ * \description Choisir un fichier aléatoire qui contient les coordonnées des grilles
+ */
+void grilleAleatoire() {
     int numeroDeGrille;
-    int character = -1;
+    int character;
     char ligne[LONGEUR_MAX_LIGNE];
-    char numeroBateau =0;
-    char grille[NUMERO_GRILLE_MAX+1][LONG_MAX_NOM_FICHIER] = NOM_FICHIER_GRILLE;
-    char grilleVide[SIZE_COLUMN][SIZE_ROW] = GRILLE_SHOOT;
-    coordonnee coordonneeXY = {0,0};
+    char numeroBateau = 0;
+    char grille[NUMERO_GRILLE_MAX + 1][LONG_MAX_NOM_FICHIER] = NOM_FICHIER_GRILLE;
 
+    coordonnee coordonneeXY = {0, 0};
+    date date;
+
+    //Ouverture du fichier des faits
+    FILE *fichierLogs = fopen("DataBase\\logs.txt", "a");
 
     //remet la grille a zero
     remettreGrilleZero();
 
-    FILE*fichierGrille = NULL;
-    srand( time(NULL));
+    //Rentrer l'événement dans l'historique
+    date = heureActuelle();
+    fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Remise de la grille d'attaque a zéro.\n", date.day, date.mois,
+            date.an, date.h, date.min, date.sec);
+
+
+    srand(time(NULL));
     numeroDeGrille = rand() % NUMERO_GRILLE_MAX + 1;
-    fichierGrille = fopen(grille[numeroDeGrille], "r");
+
+    //ouverture du fichier de la grille
+    FILE *fichierGrille = fopen(grille[numeroDeGrille], "r");
+
+    //Rentrer l'événement dans l'historique
+    date = heureActuelle();
+    fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Ouverture du fichier de la grille choisie aléatoirement.\n",
+            date.day, date.mois, date.an, date.h, date.min, date.sec);
 
 
+    if (fichierGrille != NULL) {
 
-    if(fichierGrille != NULL){
         printf("%s\n", grille[numeroDeGrille]);
-       do{
+
+        do {
             character = fgetc(fichierGrille);
             fgets(ligne, sizeof(ligne), fichierGrille);
 
             numeroBateau = ligne[0];
 
-
-            printf("Bateau No %c\n", numeroBateau);
-
             for (int i = PREMIERE_CORDONNEE_GRILLE; i <= MAX; i++) {
                 if (isdigit(ligne[i])) {
                     coordonneeXY.y = ligne[i] - '0';
                     grilleAttaque[coordonneeXY.y][coordonneeXY.x] = numeroBateau;
+
+                    //Rentrer l'événement dans l'historique
+                    date = heureActuelle();
+                    fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Chargement des coordonnées du bateaux N°%d.\n",
+                            date.day, date.mois, date.an, date.h, date.min, date.sec, numeroBateau);
+
                 } else if (isalpha(ligne[i])) {
                     coordonneeXY.x = ligne[i];
                     coordonneeXY.x = toupper(coordonneeXY.x);
                     coordonneeXY.x -= 'A';
                 }
             }
-        }while(character != EOF);
+        } while (character != EOF);
+
+        //Rentrer l'événement dans l'historique
+        date = heureActuelle();
+        fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Fin de chargement de la grille N°%d.\n", date.day, date.mois,
+                date.an, date.h, date.min, date.sec, numeroDeGrille + 1);
 
     } else {
         grilleAleatoire();
@@ -106,6 +177,7 @@ void grilleAleatoire(){
 
 
     fclose(fichierGrille);
+    fclose(fichierLogs);
     system("pause");
     system("cls");
 }
@@ -115,15 +187,26 @@ void grilleAleatoire(){
  * \date 25.03.2020
  * \description Inscrire le pseudo ainsi que le nombre de louper dans le fichier qui sert de base de données
  */
-void inscrireLeScore(int louper){
-    FILE*fichierScore = NULL;
-    char characater;
+void inscrireLeScore(int louper) {
+    date date;
 
-    fichierScore = fopen("DataBase\\score.txt", "a");
+    //Ouverture du fichier des scores
+    FILE *fichierScore = fopen("DataBase\\score.txt", "a");
 
-    fprintf(fichierScore,"%s %20d\n", pseudo, louper);
+    //Ouvertures des fichier des faits
+    FILE *fichierLogs = fopen("DataBase\\logs.txt", "a");
+
+    //Inscrire le score dans le fichier
+    fprintf(fichierScore, "%s %20d\n", pseudo, louper);
+
+    //Rentrer l'événement dans l'historique
+    date = heureActuelle();
+    fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Inscription du scores dans le fichier.\n", date.day, date.mois,
+            date.an, date.h, date.min, date.sec);
+
 
     fclose(fichierScore);
+    fclose(fichierLogs);
 }
 
 /**
@@ -131,25 +214,48 @@ void inscrireLeScore(int louper){
  * \date 23.03.2020
  * \description Afficher les scores qui sont enregistrer dans le fichier qui sert de base de données
  */
-void afficherLesScores(){
-    FILE*fichierScore = NULL;
+void afficherLesScores() {
     int character;
+    date date;
 
-    fichierScore = fopen("DataBase\\score.txt", "r");
+    //Ouverture du fichier des scores
+    FILE *fichierScore = fopen("DataBase\\score.txt", "r");
 
-    if(fichierScore != NULL) {
+    //Ouverture du fichier des faits
+    FILE *fichierLogs = fopen("DataBase\\logs.txt", "a");
+
+    if (fichierScore != NULL) {
+
+        //Rentrer l'événement dans l'historique
+        date = heureActuelle();
+        fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Ouverture du fichier des scores.\n", date.day, date.mois,
+                date.an, date.h, date.min, date.sec);
+
         afficherTitre();
+
         do {
             character = fgetc(fichierScore);
 
             printf("%c", character);
         } while (character != EOF);
 
+        //Rentrer l'événement dans l'historique
+        date = heureActuelle();
+        fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Affichage des scores précédents.\n", date.day, date.mois,
+                date.an, date.h, date.min, date.sec);
+
         fclose(fichierScore);
+
     } else {
         printf("Ce service n'est actuellement pas disponible. Envoyez un mail à l'adresse Yann.FANHA-DIAS@cpnv.ch pour obtenir de l'aide.\n");
+
+        //Rentrer l'événement dans l'historique
+        date = heureActuelle();
+        fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Echec de l'ouverture du fichier des scores.\n", date.day,
+                date.mois, date.an, date.h, date.min, date.sec);
     }
 
+    fclose(fichierLogs);
     printf("\n\n");
     system("pause");
 }
@@ -159,23 +265,38 @@ void afficherLesScores(){
  * \date 21.03.2020
  * \description Demande du pseudo du joueur
  */
-void authentification(){
+void authentification() {
     int changePseudo;
+    date date;
+    FILE *fichierLogs = fopen("DataBase\\logs.txt", "a");
 
-    if((void *) dejaEnregistrer == NULL){
+    if (dejaEnregistrer == false) {
         printf("Entrez votre nom : ");
-        gets(pseudo);
         fflush(stdin);
+        gets(pseudo);
         dejaEnregistrer = true;
+
+        //Rentrer l'événement dans l'historique
+        date = heureActuelle();
+        fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Enregistrement sous le nom de : %s.\n", date.day, date.mois,
+                date.an, date.h, date.min, date.sec, pseudo);
     } else {
-        printf("Vous êtes déjà enregistrer sous le pseudo de %s. Voulez-vous changer de pseudo ? (oui=1 / non=0)", pseudo);
+        printf("Vous êtes déjà enregistrer sous le pseudo de %s. Voulez-vous changer de pseudo ? (oui=1 / non=0)",
+               pseudo);
         scanf("%d", &changePseudo);
 
-        if(changePseudo == 1) {
-            dejaEnregistrer = true;
+        if (changePseudo == 1) {
+            dejaEnregistrer = false;
             authentification();
+
+            //Rentrer l'événement dans l'historique
+            date = heureActuelle();
+            fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Demande de changement de pseudo.\n", date.day, date.mois,
+                    date.an, date.h, date.min, date.sec);
         }
     }
+
+    fclose(fichierLogs);
 }
 
 /**
@@ -184,7 +305,7 @@ void authentification(){
  * \description Fonction qui permet de demander la valeur de la coordonnée veritcal
  * @param teteDeGrille[SIZE_ROW] grilleDeShoot[SIZE_COLUMN][SIZE_ROW]
  */
-void afficherGrille(char teteDeGrille[SIZE_ROW], char grilleDeShoot[SIZE_COLUMN][SIZE_ROW]){
+void afficherGrille(char teteDeGrille[SIZE_ROW], char grilleDeShoot[SIZE_COLUMN][SIZE_ROW]) {
 
     //Affichage de la grille
     for (int lettre = 0; lettre < SIZE_ROW; lettre++) { //Afficher l'en-tete des colonnes
@@ -206,6 +327,7 @@ void afficherGrille(char teteDeGrille[SIZE_ROW], char grilleDeShoot[SIZE_COLUMN]
         }
         printf("\n");
     }
+
 }
 
 /**
@@ -216,12 +338,12 @@ void afficherGrille(char teteDeGrille[SIZE_ROW], char grilleDeShoot[SIZE_COLUMN]
  * @param nombre2
  * @return coordonneeY
  */
-int concat(int nombre1, int nombre2){
+int concat(int nombre1, int nombre2) {
 
     char s1[20];
     char s2[20];
 
-    // convertir les deux entier en chaine
+    // convertir les deux chiffres en chaine
     sprintf(s1, "%d", nombre1);
     sprintf(s2, "%d", nombre2);
 
@@ -241,32 +363,41 @@ int concat(int nombre1, int nombre2){
  * \description Fonction qui permet de demander les coordonnées du shoot
  * @return coordonneeXY
  */
-coordonnee demandeCoordonnee(){
-    coordonnee coordonneeXY = {0 , 0};
+coordonnee demandeCoordonnee() {
+    coordonnee coordonneeXY = {0, 0};
+    date date;
     char coordonnee[TAILLE_MAX_COORDONNEE] = "\0";
 
+    //ouverture du fichier des faits
+    FILE *fichierLogs = fopen("DataBase\\logs.txt", "a");
 
     do {
         int n1 = -20;
         int n2 = -20;
+
         printf("\nCoordonnées :");
         scanf("%s", coordonnee);
 
+        //Rentrer l'événement dans l'historique
+        date = heureActuelle();
+        fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d L'utilisateur tire sur la case %s.\n", date.day, date.mois,
+                date.an, date.h, date.min, date.sec, coordonnee);
+
         for (int i = 0; i < TAILLE_MAX_COORDONNEE; ++i) {
-            if( isdigit(coordonnee[i]) ) {
+            if (isdigit(coordonnee[i])) {
                 if (n1 == -20) {
                     n1 = coordonnee[i] - '0';
                 } else {
                     n2 = coordonnee[i] - '0';
                 }
 
-            } else if ( isalpha(coordonnee[i]) ){
+            } else if (isalpha(coordonnee[i])) {
                 coordonneeXY.x = coordonnee[i];
             }
         }
 
-        if(n2 == -20) {
-            coordonneeXY.y = n1 -1;
+        if (n2 == -20) {
+            coordonneeXY.y = n1 - 1;
         } else {
             coordonneeXY.y = concat(n1, n2) - 1;
         }
@@ -275,10 +406,11 @@ coordonnee demandeCoordonnee(){
         coordonneeXY.x = toupper(coordonneeXY.x);
 
 
-    }while( coordonneeXY.y > 9 || coordonneeXY.y < 0 || coordonneeXY.x > 'J');
+    } while (coordonneeXY.y > 9 || coordonneeXY.y < 0 || coordonneeXY.x > 'J');
 
     coordonneeXY.x -= 'A'; //Prendre la bonne valeur décimal
 
+    fclose(fichierLogs);
     return coordonneeXY;
 }
 
@@ -287,95 +419,101 @@ coordonnee demandeCoordonnee(){
  * \date 06.03.2020
  * \description fonction qui permet de jouer
  */
-void jouer(){
-    char teteDeGrille[SIZE_ROW]  = TETE_GRILLE; //POUR L'AFFICHE DE LA TETE DE TITRE
+void jouer() {
+    char teteDeGrille[SIZE_ROW] = TETE_GRILLE; //POUR L'AFFICHE DE LA TETE DE TITRE
     char grilleDeShoot[SIZE_COLUMN][SIZE_ROW] = GRILLE_SHOOT; //Grille que l'utilisateur pourra voir pour savoir ou tirer
+    int nbrtirs = 0;
+    int louper = 0;
+
+    //Déclaration des variables pour savoir si un bateau a été coulé
+    int bateau5 = 5, //Bateau qui occupe 5 place
+    bateau4 = 4, //Bateau qui occupe 4 place
+    bateau3 = 3, //Bateau qui occupe 3 place
+    bateau2 = 2, //Bateau qui occupe 2 place
+    bateau1 = 3; //Bateau qui occupe 3 place
+
+    coordonnee coordonneeXY = {-1, -1};
+    date date;
 
     //Prendre un grille aleatoire
     grilleAleatoire();
 
-    //Déclaration des variable pour savoir si un bateau a été coulé
-    int bateau5 = 5, //Bateau qui occupe 5 place
-        bateau4 = 4, //Bateau qui occupe 4 place
-        bateau3 = 3, //Bateau qui occupe 3 place
-        bateau2 = 2, //Bateau qui occupe 2 place
-        bateau1 = 3; //Bateau qui occupe 3 place
-
-        int nbrtirs = 0;
-        int louper = 0;
-        int nbrBateauCouler = 0;
-        coordonnee coordonneeXY={0,0};
-
+    FILE *fichierLogs = fopen("DataBase\\logs.txt", "a");
+    //Rentrer l'événement dans l'historique
+    date = heureActuelle();
+    fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Lancement d'une partie.\n", date.day, date.mois, date.an, date.h,
+            date.min, date.sec);
 
     do {
-
         system("cls");
 
-        if(grilleDeShoot[coordonneeXY.y][coordonneeXY.x] == 'T' || grilleDeShoot[coordonneeXY.y][coordonneeXY.x] == 'X'){
-                printf("Vous avez déjà tiré sur cette case\n");
-            } else {
-                switch (grilleAttaque[coordonneeXY.y][coordonneeXY.x]){
-                    case '1':
-                        printf("\nUn bateau a été touché.\n");
-                        grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
-                        bateau1 -= 1;
-                        if(bateau1 == 0){
-                            printf("Un bateau a été coulé\n");
-                        }
-                        break;
+        if (grilleDeShoot[coordonneeXY.y][coordonneeXY.x] == 'T' ||
+            grilleDeShoot[coordonneeXY.y][coordonneeXY.x] == 'X') {
+            printf("Vous avez déjà tiré sur cette case\n");
+        } else {
 
-                    case '2':
-                        printf("\nUn bateau a été touché.\n");
-                        grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
-                        bateau2 -= 1;
-                        if(bateau2 == 0){
-                            printf("Un bateau a été coulé\n");
-                        }
-                        break;
-
-                    case '3':
-                        printf("\nUn bateau a été touché.\n");
-                        grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
-                        bateau3 -= 1;
-                        if(bateau3 == 0){
-                            printf("Un bateau a été coulé\n");
-                        }
-                        break;
-
-                    case '4':
-                        printf("\nUn bateau a été touché.\n");
-                        grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
-                        bateau4 -= 1;
-                        if(bateau4 == 0){
-                            printf("Un bateau a été coulé\n");
-                        }
-                        break;
-
-                    case '5':
-                        printf("\nUn bateau a été touché.\n");
-                        grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
-                        bateau5 -= 1;
-                        if(bateau5 == 0){
-                            printf("Un bateau a été coulé\n");
-                        }
-                        break;
-
-                    default:
-                        if(nbrtirs > 0) {
-                            printf("\nAucun bateau n'a été touché.\n");
-                            grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'X';
-                            louper += 1;
-                        }
-                        break;
+            switch (grilleAttaque[coordonneeXY.y][coordonneeXY.x]) {
+                case '1':
+                    printf("\nUn bateau a été touché.\n");
+                    grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+                    bateau1 -= 1;
+                    if (bateau1 == 0) {
+                        printf("Un bateau a été coulé\n");
                     }
-            }
+                    break;
+
+                case '2':
+                    printf("\nUn bateau a été touché.\n");
+                    grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+                    bateau2 -= 1;
+                    if (bateau2 == 0) {
+                        printf("Un bateau a été coulé\n");
+                    }
+                    break;
+
+                case '3':
+                    printf("\nUn bateau a été touché.\n");
+                    grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+                    bateau3 -= 1;
+                    if (bateau3 == 0) {
+                        printf("Un bateau a été coulé\n");
+                    }
+                    break;
+
+                case '4':
+                    printf("\nUn bateau a été touché.\n");
+                    grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+                    bateau4 -= 1;
+                    if (bateau4 == 0) {
+                        printf("Un bateau a été coulé\n");
+                    }
+                    break;
+
+                case '5':
+                    printf("\nUn bateau a été touché.\n");
+                    grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'T';
+                    bateau5 -= 1;
+                    if (bateau5 == 0) {
+                        printf("Un bateau a été coulé\n");
+                    }
+                    break;
+
+                default:
+                    if (nbrtirs > 0) {
+                        printf("\nAucun bateau n'a été touché.\n");
+                        grilleDeShoot[coordonneeXY.y][coordonneeXY.x] = 'X';
+                        louper += 1;
+                    }
+                    break;
+            } //Fin du switch
+        } //Fin du if
 
         //afficher la grille
         afficherGrille(teteDeGrille, grilleDeShoot);
 
 
         //Demander les coordonnées de shoot si le jeu n'est pas fini
-        if(bateau2 != 0 || bateau3 != 0 || bateau4 != 0 || bateau5 != 0 || bateau1 != 0){
+        if (bateau2 != 0 || bateau3 != 0 || bateau4 != 0 || bateau5 != 0 || bateau1 != 0) {
             printf("\n\n");
             printf("/--Coordonnées de shoot--/");
             coordonneeXY = demandeCoordonnee();
@@ -387,10 +525,16 @@ void jouer(){
         printf("\n");
         printf("\n");
 
-    }while (bateau2 != 0 || bateau3 != 0 || bateau4 != 0 || bateau5 != 0 || bateau1 != 0);
+    } while (bateau2 != 0 || bateau3 != 0 || bateau4 != 0 || bateau5 != 0 || bateau1 != 0);
+
+    //Rentrer l'événement dans l'historique
+    date = heureActuelle();
+    fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Fin de la partie.\n", date.day, date.mois, date.an, date.h,
+            date.min, date.sec);
 
     inscrireLeScore(louper);
 
+    fclose(fichierLogs);
     system("pause");
 }
 
@@ -399,27 +543,54 @@ void jouer(){
  * \date 06.03.2020
  * \description Affiche l'aide du jeu
  */
-void aide(){
-    FILE*fichierAide = NULL;
+void aide() {
     int aide;
+    date date = heureActuelle();
 
-    fichierAide = fopen("DataBase\\aide.txt", "r"); //Ouvre le documents
+    //Ouverture du fichier de l'aide
+    FILE *fichierAide = fopen("DataBase\\aide.txt", "r");
 
-    if(fichierAide != NULL){ //Si le fichier s'ouvre
+    //ouverture du fichier des faits important
+    FILE *fichierLogs = fopen("DataBase\\logs.txt", "a");
+
+    if (fichierAide != NULL) { //Si le fichier s'ouvre
+
+        //Rentrer l'événement dans l'historique
+        fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Ouverture du fichier de l'aide.\n", date.day, date.mois,
+                date.an, date.h, date.min, date.sec);
+
         afficherTitre();
-        do{
+
+        do {
             aide = fgetc(fichierAide);
 
             printf("%c", aide);
-        }while(aide != EOF); //EOF == End Of File
+        } while (aide != EOF); //EOF == End Of File
 
         fclose(fichierAide);
 
+        //Rentrer l'événement dans l'historique
+        fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Affichage de l'aide.\n", date.day, date.mois, date.an, date.h,
+                date.min, date.sec);
+
     } else {
+
+        //Rentrer l'événement dans l'historique
+        fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Echec de l'ouverture du fichier de l'aide.\n", date.day,
+                date.mois, date.an, date.h, date.min, date.sec);
+
         printf("L'aide n'est actuellement pas disponible. Envoyez un mail à l'adresse Yann.FANHA-DIAS@cpnv.ch pour obtenir de l'aide.");
     }
+
+
     printf("\n\n");
     system("Pause");
+
+    //Rentrer l'événement dans l'historique
+    fprintf(fichierLogs, "%02d/%02d/%d %02d:%02d:%02d Fermeture de l'aide.\n", date.day, date.mois, date.an, date.h,
+            date.min, date.sec);
+
+    fclose(fichierLogs);
     system("cls");
 }
 
@@ -429,7 +600,8 @@ void aide(){
  * \description Affiche le menu et récupere le choix de l'user
  * @param choix
  */
-void menu(int choix){
+void menu() {
+    int choix = 0;
     afficherTitre();
 
     printf("1 - Jouer");
@@ -443,50 +615,43 @@ void menu(int choix){
     system("cls");
 
     //appeller la bonne fonction
-    switch(choix){
+    switch (choix) {
         case 1:
-            if((void *) dejaEnregistrer == NULL){
+            if (dejaEnregistrer == false) {
                 authentification();
             }
             jouer();
             break;
 
-        case 2: authentification();
+        case 2:
+            authentification();
             break;
 
-        case 3: afficherLesScores();
+        case 3:
+            afficherLesScores();
             break;
 
-        case 4: aide();
+        case 4:
+            aide();
             break;
 
-        case 5: quit = TRUE; //Pour définir que l'on veut bien quitter le programme
+        case 5:
+            exit(0);
             break;
 
-        case 6: grilleAleatoire();
+        default:
+            system("cls");
+            menu(choix);
             break;
-
-        default: system("cls");
-                menu(choix);
-                break;
     }
 }
 
-
 int main() {
-    int choix = 0;
     SetConsoleOutputCP(65001);//Accents
 
-    //Appeller la fonction du menu
+    //Appeller le menu
     system("cls");
-    menu(choix);
+    menu();
 
-
-    printf("\n\n");
-
-    if((void *) quit == false){
-        return main();
-    } else {
-        return 0;
-    }
+    return main();
 }

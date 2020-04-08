@@ -1,0 +1,6 @@
+08/04/2020 19:29:58 Ouverture du fichier de l'aide.
+08/04/2020 19:29:58 Affichage de l'aide.
+08/04/2020 19:29:58 Fermeture de l'aide.
+08/04/2020 19:30:08 Ouverture du fichier des scores.
+08/04/2020 19:30:08 Affichage des scores précédents.
+08/04/2020 19:30:13 Enregistrement sous le nom de : YFanha
