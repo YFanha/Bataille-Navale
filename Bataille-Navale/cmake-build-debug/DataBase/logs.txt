@@ -263,3 +263,14 @@
 08/04/2020 22:20:36 Inscription du scores dans le fichier.
 08/04/2020 22:16:57 Lancement d'une partie.
 08/04/2020 22:20:36 Fin de la partie.
+09/04/2020 14:31:21 Ouverture du fichier des scores.
+09/04/2020 14:31:21 Affichage des scores précédents.
+09/04/2020 21:37:58 Ouverture du fichier de l'aide.
+09/04/2020 21:37:58 Affichage de l'aide.
+09/04/2020 21:37:58 Fermeture de l'aide.
+09/04/2020 21:38:01 Ouverture du fichier de l'aide.
+09/04/2020 21:38:01 Affichage de l'aide.
+09/04/2020 21:38:01 Fermeture de l'aide.
+09/04/2020 21:38:03 Ouverture du fichier de l'aide.
+09/04/2020 21:38:03 Affichage de l'aide.
+09/04/2020 21:38:03 Fermeture de l'aide.
